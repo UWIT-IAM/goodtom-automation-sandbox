@@ -1,0 +1,11 @@
+name: Pull request workflow
+on: pull_request
+jobs:
+  verify-ownership:
+    runs-on: ubuntu-latest
+    container:
+      image: uwitiam/is-user-codeowner-action
+    steps:
+      - uses: actions/checkout@master
+      - run: ls -alh "${GITHUB_WORKSPACE}"a
+      - run: git diff origin/${GITHUB_BASE_REF} HEAD
