@@ -7,5 +7,5 @@ jobs:
       image: uwitiam/is-user-codeowner-action
     steps:
       - uses: actions/checkout@master
-      - run: ls -alh "${GITHUB_WORKSPACE}"a
-      - run: git diff origin/${GITHUB_BASE_REF} HEAD
+      - run: git fetch origin
+      - run: cd /app && poetry run is-user-codeowner -u ${GITHUB_ACTOR} -p ${GITHUB_WORKSPACE} -t origin/main
